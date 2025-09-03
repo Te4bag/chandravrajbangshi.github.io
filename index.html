@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chandrav Rajbangshi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Segoe UI Historic', 'Segoe UI Emoji', Roboto, Helvetica, Arial, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      background: #0d1117;
+      padding: 1rem 3rem; /* Increased horizontal padding to move content inward */
+      border-bottom: 1px solid #30363d;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #e6edf3;
+      text-decoration: none;
+      position: relative;
+      top: 1px; /* Nudge for perfect vertical alignment */
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #cccccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #ffffff;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: #cccccc;
+      padding: 0.4rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      min-height: calc(100vh - 80px);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: #0d1117;
+      padding: 2rem;
+    }
+
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      border: 1px solid #30363d;
+      display: block;
+      object-fit: cover; /* ESSENTIAL for non-square images to prevent distortion */
+      background-color: #30363d; /* Placeholder color */
+    }
+
+    .profile-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-title {
+      color: #cccccc;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .profile-info {
+        margin-top: 1.5rem;
+    }
+
+    .profile-info p {
+      color: #cccccc;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sidebar-links {
+        margin-top: 1rem;
+    }
+
+    .sidebar-links a {
+        display: block;
+        color: #cccccc;
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 0.2rem 0;
+        transition: color 0.3s ease;
+    }
+
+    .sidebar-links a:hover {
+        color: #58a6ff;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 2rem 3rem;
+      background: #0d1117;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .intro-text {
+      color: #cccccc;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-info a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    
+    /* Add separator ONLY to sections inside the #about page */
+    #about .section-title {
+      padding-top: 2.5rem;
+      border-top: 1px solid #30363d;
+    }
+    
+    /* Remove separator from the very first section on the #about page */
+    #about > .section-title:first-of-type {
+        border-top: none;
+        padding-top: 0;
+    }
+
+    .education-item, .experience-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .item-content {
+      flex-grow: 1;
+    }
+
+    .item-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 0.2rem;
+    }
+
+    .item-subtitle, .item-description {
+      color: #cccccc;
+      font-size: 0.9rem;
+    }
+
+    .item-date {
+      color: #8b949e;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .latest-updates ul {
+        list-style: none;
+        padding-left: 1rem;
+    }
+
+    .latest-updates li {
+        position: relative;
+        margin-bottom: 0.75rem;
+        color: #cccccc;
+        font-size: 0.95rem;
+    }
+
+    .latest-updates li::before {
+        content: "•";
+        position: absolute;
+        left: -1rem;
+        color: #8b949e;
+    }
+
+    .latest-updates strong {
+        font-weight: 600;
+        color: #e6edf3;
+        margin-right: 0.5rem;
+    }
+    
+    /* Projects Page */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-item {
+      border: 1px solid #30363d;
+      padding: 1.5rem;
+      background: #161b22;
+      border-radius: 6px;
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-description {
+      color: #cccccc;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .project-link {
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      nav {
+        padding: 1rem 1.5rem;
+      }
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid #30363d;
+        padding: 1.5rem;
+        text-align: center;
+      }
+      .profile-info p {
+        justify-content: center;
+      }
+      .main-content {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">Chandrav Rajbangshi</a>
+      <div class="nav-links">
+        <a href="#about" class="nav-link active" onclick="showPage('about')">About</a>
+        <a href="#publications" class="nav-link" onclick="showPage('publications')">Publications</a>
+        <a href="#projects" class="nav-link" onclick="showPage('projects')">Projects</a>
+        <a href="#cv" class="nav-link" onclick="showPage('cv')">CV</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <aside class="sidebar">
+      <img class="profile-image" src="C:\Users\Asus\Downloads\1000190619 (1).jpg" alt="Chandrav Rajbangshi">
+      <h1 class="profile-name">Chandrav Rajbangshi</h1>
+      <p class="profile-title">B.Tech CSE Student at BIT Mesra</p>
+      
+      <div class="profile-info">
+        <p>📍 Mesra, India</p>
+        <p>🎓 Birla Institute of Technology</p>
+        <div class="sidebar-links">
+          <a href="https://github.com/Te4bag">GitHub</a>
+          <a href="https://www.linkedin.com/in/chandrav-rajbangshi/">LinkedIn</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div id="about" class="page active">
+        <div class="intro-text">
+          <p>Hi, I am Chandrav Rajbangshi, currently a B.Tech student in Computer Science at Birla Institute of Technology, Mesra. I am interested in artificial intelligence, machine learning, and deep learning, spending most of my time working on projects involving retrieval-augmented generation (RAG) and exploring how to make large language models reason better. I am also curious about mechanistic interpretability and learning CUDA programming, still very much a beginner but excited to explore and grow in these areas. I am open to research and industry opportunities starting after July 2026.</p>
+        </div>
+
+        <div class="contact-info">
+          <p>You can reach out to me at <a href="mailto:chandravraj05@gmail.com">chandravraj05@gmail.com</a></p>
+        </div>
+
+        <div class="section-title">Education</div>
+        <div class="education-item">
+          <div class="item-content">
+            <div class="item-title">Birla Institute of Technology, Mesra</div>
+            <div class="item-subtitle">B.Tech in Computer Science and Engineering</div>
+          </div>
+          <div class="item-date">(2023 - 2027)</div>
+        </div>
+        <div class="education-item">
+          <div class="item-content">
+            <div class="item-title">Sai Vikash Junior College</div>
+            <div class="item-subtitle">Higher Secondary Education</div>
+          </div>
+          <div class="item-date">(2021 - 2023)</div>
+        </div>
+
+        <div class="section-title">Experience</div>
+        <div class="experience-item">
+          <div class="item-content">
+            <div class="item-title">AI Research Intern, RAAPID Inc.</div>
+            <div class="item-description">Worked on GRIT fine-tuning method achieving 42% fewer updated parameters and 29% faster training than QLoRA, while maintaining SOTA accuracy.</div>
+          </div>
+          <div class="item-date">(May 2025 - Present, Jul 2025 - Present)</div>
+        </div>
+
+        <div class="latest-updates">
+          <div class="section-title">Latest Updates</div>
+          <ul>
+            <li><strong>May 2025</strong> Started my AI research internship at RAAPID Inc., focusing on efficient model fine-tuning techniques.</li>
+            <li><strong>Jan 2025</strong> Completed CaptionFlow project, achieving 15% improvement in BLEU score for image captioning.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="publications" class="page">
+        <div class="section-title">Publications</div>
+        <p class="intro-text">Publications will be added here as they become available.</p>
+      </div>
+
+      <div id="projects" class="page">
+        <div class="section-title">Projects</div>
+        <div class="projects-grid">
+          <div class="project-item">
+            <div class="project-title">CaptionFlow</div>
+            <div class="project-description">Hybrid CNN-Transformer model for image captioning, improving BLEU score by 15%. Built with advanced attention mechanisms and transfer learning techniques for generating accurate and contextual image descriptions.</div>
+            <a href="https://github.com/Te4bag/CaptionFlow" class="project-link">View on GitHub</a>
+          </div>
+          <div class="project-item">
+            <div class="project-title">Conversational RAG With PDFs</div>
+            <div class="project-description">Built a RAG system to query 100+ PDFs with contextual memory, achieving 85%+ retrieval accuracy. Implemented advanced embedding techniques and vector databases for intelligent document querying with conversation history.</div>
+            <a href="https://github.com/Te4bag/RAG-with-history" class="project-link">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="cv" class="page">
+        <div class="section-title">Curriculum Vitae</div>
+        <p class="intro-text">CV download link will be available here.</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      // Hide all pages
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+
+      // Show selected page
+      const newPage = document.getElementById(pageId);
+      if (newPage) {
+        newPage.classList.add('active');
+      }
+
+      // Update active nav link
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + pageId) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    // Handle navigation clicks
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const pageId = this.getAttribute('href').substring(1);
+        showPage(pageId);
+        // Also update URL hash for better history/linking
+        window.location.hash = pageId;
+      });
+    });
+    
+    // Ensure the correct page is shown on load based on URL hash
+    document.addEventListener('DOMContentLoaded', () => {
+        const pageId = window.location.hash.substring(1) || 'about';
+        showPage(pageId);
+    });
+
+  </script>
+</body>
+</html>
