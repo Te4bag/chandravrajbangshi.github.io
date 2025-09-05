@@ -448,16 +448,47 @@
       <div id="cv" class="page">
     <div class="section-title">Curriculum Vitae</div>
     
-    <a href="https://drive.google.com/uc?export=download&id=1ER6nMn4Ur7oI1k8J2iiIr6V_pkR6R-xj" class="cv-link" target="_blank">
-        Download My CV (PDF)
-    </a>
+    <div class="cv-actions">
+        <a href="https://drive.google.com/file/d/1ER6nMn4Ur7oI1k8J2iiIr6V_pkR6R-xj/view?usp=sharing" 
+           class="cv-button view" 
+           target="_blank">
+           View in New Tab
+        </a>
+
+        <a href="https://drive.google.com/uc?export=download&id=1ER6nMn4Ur7oI1k8J2iiIr6V_pkR6R-xj" 
+           class="cv-button download">
+           Download PDF
+        </a>
+    </div>
 
 </div>
 
 <style>
-    .cv-link {
+    .cv-actions {
+        margin-top: 20px;
+    }
+    .cv-button {
+        display: inline-block;
+        padding: 12px 25px;
+        margin: 5px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-family: sans-serif;
         font-weight: bold;
-        color: #0056b3;
+        text-align: center;
+        transition: transform 0.2s ease;
+    }
+    .cv-button:hover {
+        transform: translateY(-2px);
+    }
+    .view {
+        background-color: #eaf1f8; /* Light blue */
+        color: #3498db;
+        border: 1px solid #3498db;
+    }
+    .download {
+        background-color: #3498db; /* Blue */
+        color: #ffffff;
     }
 </style>
 
