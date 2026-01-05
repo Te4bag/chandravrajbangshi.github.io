@@ -344,6 +344,48 @@
         height: 80%;
         margin: 10% auto;
       }
+      /* --- Publications --- */
+      .publication-card {
+        border: 1px solid #30363d;
+        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+        background: #161b22;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+      }
+      
+      .publication-card:hover {
+        border-color: #58a6ff;
+        transform: translateY(-2px);
+      }
+      
+      .publication-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #e6edf3;
+        margin-bottom: 0.3rem;
+      }
+      
+      .publication-title a {
+        color: inherit;
+        text-decoration: none;
+      }
+      
+      .publication-title a:hover {
+        color: #58a6ff;
+      }
+      
+      .publication-meta {
+        font-size: 0.85rem;
+        color: #8b949e;
+        margin-bottom: 0.6rem;
+      }
+      
+      .publication-desc {
+        font-size: 0.9rem;
+        color: #cccccc;
+        line-height: 1.6;
+      }
+
     }
   </style>
 </head>
@@ -433,8 +475,25 @@
 
       <div id="publications" class="page">
         <div class="section-title">Publications</div>
-        <p class="intro-text">GRIT is submitted to ICLR 2026 (under review). Updating as soon as arxiv is released</p>
+      
+        <div class="publication-card">
+          <div class="publication-title">
+            <a href="https://lnkd.in/dGSyUc6v" target="_blank" rel="noopener noreferrer">
+              GRIT: Geometry-Aware PEFT with K-FAC Preconditioning and Fisher-Guided Reprojection
+            </a>
+          </div>
+      
+          <div class="publication-meta">
+            Submitted to ICLR 2026 · Under Review
+          </div>
+      
+          <div class="publication-desc">
+            A parameter-efficient fine-tuning method that reduces catastrophic forgetting
+            by concentrating updates along curvature-informed directions.
+          </div>
+        </div>
       </div>
+
 
       <div id="projects" class="page">
         <div class="section-title">Projects</div>
